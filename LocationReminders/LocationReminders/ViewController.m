@@ -9,8 +9,12 @@
 #import "ViewController.h"
 
 @import Parse;
+@import MapKit;
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic)CLLocationManager *locationManager;
 
 @end
 
@@ -18,29 +22,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-//    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-//    
-//    testObject[@"testName"] = @"Alex Cahn";
-//    
-//    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        if succeeded {
-//            NSLog(@"success saving test object");
-//        } else {
-//            NSLog(@"there was a problem saving. Save Error: %@", error.localizedDescription);
-//        }
-//    }];
+ 
+    [self requestPermissions];
+    self.mapView.showsUserLocation = YES;
     
-    PFQuery *query = [PFQuery queryWithClassName:@"TestObject"];
+}
+
+-(void)requestPermissions{
+    self.locationManager = [[CLLocationManager alloc]init];
+    [self.locationManager requestAlwaysAuthorization];
+}
+
+- (IBAction)locationOnePressed:(id)sender {
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.618217, -122.351832);
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"%@", error.localizedDescription);
-        } else {
-            NSLog(@"query results %@", objects);
-        }
-    }];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 1000.0, 1000.0);
     
+    [self.mapView setRegion:region animated:YES];
+}
+
+- (IBAction)locationTwoPresses:(id)sender {
+    CLLocationCoordinate2D coordinateTwo = CLLocationCoordinate2DMake(40.689249, -74.044500);
+    
+    MKCoordinateRegion regionTwo = MKCoordinateRegionMakeWithDistance(coordinateTwo, 1000.0, 1000.0);
+    
+    [self.mapView setRegion:regionTwo animated:YES];
+}
+
+- (IBAction)locationThreePressed:(id)sender {
+    CLLocationCoordinate2D coordinateThree = CLLocationCoordinate2DMake(48.858370, 2.294481);
+    
+    MKCoordinateRegion regionThree = MKCoordinateRegionMakeWithDistance(coordinateThree, 1000.0, 1000.0);
+    
+    [self.mapView setRegion:regionThree animated:YES];
 }
 
 
