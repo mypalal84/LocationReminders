@@ -164,8 +164,10 @@ playground.xcworkspace
 
 ### Carthage ###
 # Carthage - A simple, decentralized dependency manager for Cocoa
-**/Carthage/Checkouts/
-**/Carthage/Build/
+LocationReminders/Carthage/Checkouts/
+LocationReminders/Carthage/Build/
+Cartfile
+Cartfile.resolved
 
 # End of https://www.gitignore.io/api/carthage
 
