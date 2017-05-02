@@ -8,14 +8,14 @@
 
 #import "ViewController.h"
 #import "AddReminderViewController.h"
+#import "LocationController.h"
 
 @import Parse;
 @import MapKit;
 
-@interface ViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
+@interface ViewController () <MKMapViewDelegate, LocationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic)CLLocationManager *locationManager;
 
 @end
 
@@ -23,24 +23,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
-    [self requestPermissions];
+
+    [LocationController shared].delegate = self;
+    
     self.mapView.showsUserLocation = YES;
     
     self.mapView.delegate = self;
+    
+    [[LocationController shared] updateLocation];
 }
 
--(void)requestPermissions{
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 100; //meters
+-(void)locationControllerUpdatedLocation:(CLLocation *)location{
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 1000.0, 1000.0);
     
-    self.locationManager.delegate = self;
-    
-    [self.locationManager requestAlwaysAuthorization];
-    
-    [self.locationManager startUpdatingLocation];
+    [self.mapView setRegion:region animated:YES];
 }
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     [super prepareForSegue:segue sender:sender];
@@ -100,19 +98,6 @@
     }
 }
 
-
-
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
-    
-    CLLocation *location = locations.lastObject;
-    
-    NSLog(@"Latitude: %f, - Longitude: %f", location.coordinate.latitude, location.coordinate.longitude);
-    
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 1000.0, 1000.0);
-    
-    [self.mapView setRegion:region animated:YES];
-}
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     

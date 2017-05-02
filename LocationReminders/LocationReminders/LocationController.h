@@ -7,11 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ViewController.h"
+#import "AddReminderViewController.h"
+
+@protocol LocationControllerDelegate <NSObject>
+@required
+-(void)locationControllerUpdatedLocation:(CLLocation *)location;
+
+@end
 
 @interface LocationController : NSObject
 
-//@property(strong, nonatomic)CLLocationManager *locationManager;
-//@property(strong, nonatomic)CLLocation *location;
-//@property(weak, nonatomic)id delegate;
+
++ (instancetype)shared;
+- (void)updateLocation;
+
+@property(strong, nonatomic)CLLocation *location;
+@property(weak, nonatomic)id<LocationControllerDelegate> delegate;
 
 @end
