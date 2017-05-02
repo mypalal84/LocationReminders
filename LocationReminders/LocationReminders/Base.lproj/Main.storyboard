@@ -29,76 +29,79 @@
                                     <outletCollection property="gestureRecognizers" destination="Iiy-kS-X9y" appends="YES" id="peU-B5-sgf"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqb-YY-wge">
-                                <rect key="frame" x="56" y="575" width="70" height="25"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4P-p4-f0m">
+                                <rect key="frame" x="56" y="575" width="263" height="25"/>
                                 <color key="backgroundColor" red="0.26201942070000001" green="0.97680455450000003" blue="0.6129114135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="LPq-f5-Hwk"/>
+                                    <constraint firstAttribute="height" constant="25" id="M2E-LL-BFQ"/>
                                 </constraints>
-                                <state key="normal" title="Location 1">
+                                <state key="normal" title="Code Fellows">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="locationOnePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hgu-LU-2f5"/>
+                                    <action selector="locationOnePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KES-Op-5J3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qM1-94-gzD">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qM1-94-gzD">
                                 <rect key="frame" x="56" y="608" width="263" height="25"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="0W8-CD-6gh"/>
+                                    <constraint firstAttribute="height" constant="25" id="YcK-99-Bug"/>
                                 </constraints>
-                                <state key="normal" title="Location 2">
+                                <state key="normal" title="Statue of Liberty">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="locationTwoPresses:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7an-Yb-Hff"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcf-jQ-QDK">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcf-jQ-QDK">
                                 <rect key="frame" x="56" y="641" width="263" height="25"/>
                                 <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="MeN-Jm-LDh"/>
+                                    <constraint firstAttribute="height" constant="25" id="DJJ-Pl-8Is"/>
                                 </constraints>
-                                <state key="normal" title="Location 3">
+                                <state key="normal" title="Eiffel Tower">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="locationThreePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q4z-0K-USt"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4P-p4-f0m">
-                                <rect key="frame" x="56" y="575" width="263" height="25"/>
-                                <color key="backgroundColor" red="0.26201942070000001" green="0.97680455450000003" blue="0.6129114135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="fpg-ve-hHZ"/>
-                                </constraints>
-                                <state key="normal" title="Location 1">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="locationOnePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KES-Op-5J3"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="qM1-94-gzD" firstAttribute="top" secondItem="kqb-YY-wge" secondAttribute="bottom" constant="8" id="3ar-Qg-Skd"/>
-                            <constraint firstItem="qM1-94-gzD" firstAttribute="width" secondItem="DbN-6p-153" secondAttribute="width" id="5YE-jy-Zj2"/>
-                            <constraint firstItem="kqb-YY-wge" firstAttribute="leading" secondItem="DbN-6p-153" secondAttribute="leading" id="6Y0-zO-566"/>
-                            <constraint firstItem="a4P-p4-f0m" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Djc-hU-03d"/>
-                            <constraint firstItem="Xcf-jQ-QDK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GQV-UN-Hr1"/>
-                            <constraint firstItem="Xcf-jQ-QDK" firstAttribute="width" secondItem="DbN-6p-153" secondAttribute="width" id="JRU-2g-003"/>
+                            <constraint firstItem="qM1-94-gzD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="34j-lB-5Ut"/>
+                            <constraint firstItem="Xcf-jQ-QDK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CWV-N3-Ikh"/>
+                            <constraint firstItem="a4P-p4-f0m" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FW0-9k-eyU"/>
                             <constraint firstItem="DbN-6p-153" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="MmM-TH-tGZ"/>
-                            <constraint firstItem="kqb-YY-wge" firstAttribute="top" secondItem="DbN-6p-153" secondAttribute="bottom" constant="8" id="N4w-H1-eBM"/>
-                            <constraint firstItem="qM1-94-gzD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UrV-on-nDn"/>
+                            <constraint firstItem="a4P-p4-f0m" firstAttribute="top" secondItem="DbN-6p-153" secondAttribute="bottom" constant="8" id="QIK-F8-XOx"/>
                             <constraint firstItem="DbN-6p-153" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W89-CP-eYy"/>
-                            <constraint firstItem="a4P-p4-f0m" firstAttribute="width" secondItem="DbN-6p-153" secondAttribute="width" id="ZO0-Zq-EK3"/>
-                            <constraint firstItem="Xcf-jQ-QDK" firstAttribute="top" secondItem="qM1-94-gzD" secondAttribute="bottom" constant="8" id="Zoj-FW-GpA"/>
-                            <constraint firstItem="a4P-p4-f0m" firstAttribute="top" secondItem="DbN-6p-153" secondAttribute="bottom" constant="8" id="aQK-WB-qOE"/>
+                            <constraint firstItem="qM1-94-gzD" firstAttribute="top" secondItem="a4P-p4-f0m" secondAttribute="bottom" constant="8" id="alk-tN-pWw"/>
+                            <constraint firstItem="a4P-p4-f0m" firstAttribute="width" secondItem="DbN-6p-153" secondAttribute="width" id="eHJ-I8-Ayp"/>
+                            <constraint firstItem="Xcf-jQ-QDK" firstAttribute="width" secondItem="DbN-6p-153" secondAttribute="width" id="eny-lz-n9V"/>
+                            <constraint firstItem="qM1-94-gzD" firstAttribute="width" secondItem="DbN-6p-153" secondAttribute="width" id="fki-6X-ckr"/>
                             <constraint firstItem="DbN-6p-153" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jmc-h2-W4r"/>
                             <constraint firstItem="DbN-6p-153" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="qkN-zt-Qg1"/>
+                            <constraint firstItem="Xcf-jQ-QDK" firstAttribute="top" secondItem="qM1-94-gzD" secondAttribute="bottom" constant="8" id="xM7-SO-9SX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zgF-6k-fhr"/>
@@ -127,12 +130,40 @@
                     <view key="view" contentMode="scaleToFill" id="Abj-Cx-X7T">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QgT-Kv-xfo">
+                                <rect key="frame" x="16" y="264" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="XL1-Rh-qhp"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Radius" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJm-Sp-ev6">
+                                <rect key="frame" x="16" y="336" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Px8-4T-qlt"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="go"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QgT-Kv-xfo" firstAttribute="leading" secondItem="Abj-Cx-X7T" secondAttribute="leading" constant="16" id="5PF-oq-e9h"/>
+                            <constraint firstItem="eJm-Sp-ev6" firstAttribute="leading" secondItem="Abj-Cx-X7T" secondAttribute="leading" constant="16" id="UQa-J5-bia"/>
+                            <constraint firstItem="QgT-Kv-xfo" firstAttribute="top" secondItem="ZmI-RM-cYC" secondAttribute="bottom" constant="200" id="cQ4-qP-Lpg"/>
+                            <constraint firstAttribute="trailing" secondItem="QgT-Kv-xfo" secondAttribute="trailing" constant="16" id="eZY-mE-hzw"/>
+                            <constraint firstItem="eJm-Sp-ev6" firstAttribute="top" secondItem="QgT-Kv-xfo" secondAttribute="bottom" constant="32" id="xNB-7s-llr"/>
+                            <constraint firstAttribute="trailing" secondItem="eJm-Sp-ev6" secondAttribute="trailing" constant="16" id="yuB-Fo-wb0"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5V1-Za-dBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1951" y="137"/>
+            <point key="canvasLocation" x="1949.5999999999999" y="136.28185907046478"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jcZ-1y-Tkt">
