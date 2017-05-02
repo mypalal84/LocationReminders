@@ -11,7 +11,7 @@
 @import Parse;
 @import MapKit;
 
-@interface ViewController ()
+@interface ViewController () <CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic)CLLocationManager *locationManager;
@@ -26,12 +26,22 @@
     [self requestPermissions];
     self.mapView.showsUserLocation = YES;
     
+    
 }
 
 -(void)requestPermissions{
     self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = 100; //meters
+    
+    self.locationManager.delegate = self;
+    
     [self.locationManager requestAlwaysAuthorization];
+    
+    [self.locationManager startUpdatingLocation];
 }
+
+
 
 - (IBAction)locationOnePressed:(id)sender {
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(47.618217, -122.351832);
@@ -63,5 +73,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
+    CLLocation *location = locations.lastObject;
+    
+    NSLog(@"Coordinate: %f, - Altitude: %f", location.coordinate.longitude, location.altitude);
+    
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 1000.0, 1000.0);
+    
+    [self.mapView setRegion:region animated:YES];
+    
+}
 
 @end
