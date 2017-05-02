@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@import MapKit;
+
 @interface AddReminderViewController : UIViewController
+
+@property(strong, nonatomic)NSString *annotationTitle;
+@property(nonatomic)CLLocationCoordinate2D coordinate;
 
 @end
