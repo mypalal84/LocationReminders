@@ -77,7 +77,7 @@
     
     CLLocation *location = locations.lastObject;
     
-    NSLog(@"Coordinate: %f, - Altitude: %f", location.coordinate.longitude, location.altitude);
+    NSLog(@"Latitude: %f, - Longitude: %f", location.coordinate.latitude, location.coordinate.longitude);
     
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 1000.0, 1000.0);
     

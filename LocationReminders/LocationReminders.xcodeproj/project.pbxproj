@@ -18,6 +18,7 @@
 		7F1DE3471EB7BF50004AC353 /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7F1DE3431EB7BF46004AC353 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7F1DE3481EB7BF53004AC353 /* Parse.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7F1DE3441EB7BF46004AC353 /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7F1DE34A1EB7C0C9004AC353 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1DE3491EB7C0C9004AC353 /* MapKit.framework */; };
+		7FEDF9141EB8FF1F00270F64 /* AddReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEDF9131EB8FF1F00270F64 /* AddReminderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +49,8 @@
 		7F1DE3431EB7BF46004AC353 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		7F1DE3441EB7BF46004AC353 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Carthage/Build/iOS/Parse.framework; sourceTree = "<group>"; };
 		7F1DE3491EB7C0C9004AC353 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7FEDF9121EB8FF1F00270F64 /* AddReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReminderViewController.h; sourceTree = "<group>"; };
+		7FEDF9131EB8FF1F00270F64 /* AddReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReminderViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 				7F1DE32A1EB7AC05004AC353 /* ViewController.h */,
 				7F1DE32B1EB7AC05004AC353 /* ViewController.m */,
 				7F1DE32D1EB7AC05004AC353 /* Main.storyboard */,
+				7FEDF9121EB8FF1F00270F64 /* AddReminderViewController.h */,
+				7FEDF9131EB8FF1F00270F64 /* AddReminderViewController.m */,
 				7F1DE3301EB7AC05004AC353 /* Assets.xcassets */,
 				7F1DE3321EB7AC05004AC353 /* LaunchScreen.storyboard */,
 				7F1DE3351EB7AC05004AC353 /* Info.plist */,
@@ -193,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FEDF9141EB8FF1F00270F64 /* AddReminderViewController.m in Sources */,
 				7F1DE32C1EB7AC05004AC353 /* ViewController.m in Sources */,
 				7F1DE3291EB7AC05004AC353 /* AppDelegate.m in Sources */,
 				7F1DE3261EB7AC05004AC353 /* main.m in Sources */,
@@ -364,6 +370,7 @@
 				7F1DE33A1EB7AC05004AC353 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
