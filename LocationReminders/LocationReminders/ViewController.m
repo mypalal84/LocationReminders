@@ -17,6 +17,9 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
+
+
+
 @end
 
 @implementation ViewController
@@ -34,7 +37,7 @@
 }
 
 -(void)locationControllerUpdatedLocation:(CLLocation *)location{
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 1000.0, 1000.0);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(location.coordinate, 1000, 1000);
     
     [self.mapView setRegion:region animated:YES];
 }
