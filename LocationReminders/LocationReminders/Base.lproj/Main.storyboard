@@ -131,35 +131,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QgT-Kv-xfo">
-                                <rect key="frame" x="16" y="264" width="343" height="40"/>
+                            <slider opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="5" maxValue="2500" minimumValueImage="5" maximumValueImage="2500" translatesAutoresizingMaskIntoConstraints="NO" id="3R7-ei-IcH" userLabel="Region Radius">
+                                <rect key="frame" x="14" y="361" width="347" height="61"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" adjustable="YES"/>
+                                </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="XL1-Rh-qhp"/>
+                                    <constraint firstAttribute="height" constant="60" id="WL6-mz-DPG"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="radiusSliderValueChanged:" destination="gBc-Jt-9yo" eventType="valueChanged" id="qUV-Fe-Og3"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Region Radius (Meters)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvQ-Fo-z21">
+                                <rect key="frame" x="16" y="313" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ybt-cE-hbX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QgT-Kv-xfo">
+                                <rect key="frame" x="16" y="437" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fvV-Do-v7z"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Radius" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJm-Sp-ev6">
-                                <rect key="frame" x="16" y="336" width="343" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Px8-4T-qlt"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="go"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="QgT-Kv-xfo" firstAttribute="leading" secondItem="Abj-Cx-X7T" secondAttribute="leading" constant="16" id="5PF-oq-e9h"/>
-                            <constraint firstItem="eJm-Sp-ev6" firstAttribute="leading" secondItem="Abj-Cx-X7T" secondAttribute="leading" constant="16" id="UQa-J5-bia"/>
-                            <constraint firstItem="QgT-Kv-xfo" firstAttribute="top" secondItem="ZmI-RM-cYC" secondAttribute="bottom" constant="200" id="cQ4-qP-Lpg"/>
-                            <constraint firstAttribute="trailing" secondItem="QgT-Kv-xfo" secondAttribute="trailing" constant="16" id="eZY-mE-hzw"/>
-                            <constraint firstItem="eJm-Sp-ev6" firstAttribute="top" secondItem="QgT-Kv-xfo" secondAttribute="bottom" constant="32" id="xNB-7s-llr"/>
-                            <constraint firstAttribute="trailing" secondItem="eJm-Sp-ev6" secondAttribute="trailing" constant="16" id="yuB-Fo-wb0"/>
+                            <constraint firstAttribute="trailing" secondItem="3R7-ei-IcH" secondAttribute="trailing" constant="16" id="7RU-hl-73h"/>
+                            <constraint firstItem="gvQ-Fo-z21" firstAttribute="leading" secondItem="Abj-Cx-X7T" secondAttribute="leading" constant="16" id="GKx-bD-juF"/>
+                            <constraint firstItem="gvQ-Fo-z21" firstAttribute="centerY" secondItem="Abj-Cx-X7T" secondAttribute="centerY" id="IrX-Yi-whP"/>
+                            <constraint firstAttribute="trailing" secondItem="QgT-Kv-xfo" secondAttribute="trailing" constant="16" id="KgW-MN-obZ"/>
+                            <constraint firstItem="3R7-ei-IcH" firstAttribute="leading" secondItem="Abj-Cx-X7T" secondAttribute="leading" constant="16" id="LJ5-KQ-9Z2"/>
+                            <constraint firstItem="3R7-ei-IcH" firstAttribute="top" secondItem="gvQ-Fo-z21" secondAttribute="bottom" constant="8" id="SNV-am-I8g"/>
+                            <constraint firstAttribute="trailing" secondItem="gvQ-Fo-z21" secondAttribute="trailing" constant="16" id="Wdd-sp-hSz"/>
+                            <constraint firstItem="QgT-Kv-xfo" firstAttribute="top" secondItem="3R7-ei-IcH" secondAttribute="bottom" constant="16" id="bbW-8a-piH"/>
+                            <constraint firstItem="QgT-Kv-xfo" firstAttribute="leading" secondItem="Abj-Cx-X7T" secondAttribute="leading" constant="16" id="h43-vN-jRF"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="radiusLabel" destination="gvQ-Fo-z21" id="7Nj-kY-lmz"/>
+                        <outlet property="radiusSlider" destination="3R7-ei-IcH" id="BD1-OS-ikV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5V1-Za-dBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -184,4 +203,8 @@
             <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="2500" width="16" height="16"/>
+        <image name="5" width="16" height="16"/>
+    </resources>
 </document>

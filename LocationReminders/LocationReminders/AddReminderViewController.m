@@ -10,6 +10,8 @@
 
 @interface AddReminderViewController ()
 
+
+
 @end
 
 @implementation AddReminderViewController
@@ -36,5 +38,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)radiusSliderValueChanged:(id)sender {
+    NSNumber *radiusNumber = [NSNumber numberWithInt:self.radiusSlider.value];
+    self.radiusLabel.text = [NSString stringWithFormat:@"%@", radiusNumber];
+}
+
 
 @end

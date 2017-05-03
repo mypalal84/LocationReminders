@@ -12,6 +12,11 @@
 
 @interface AddReminderViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *radiusLabel;
+
+@property (weak, nonatomic) IBOutlet UISlider *radiusSlider;
+
+
 @property(strong, nonatomic)NSString *annotationTitle;
 @property(nonatomic)CLLocationCoordinate2D coordinate;
 
