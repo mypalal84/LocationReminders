@@ -48,7 +48,7 @@
         loginViewController.delegate = self;
         loginViewController.signUpController.delegate = self;
         
-        loginViewController.fields = PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton | PFLogInFieldsUsernameAndPassword | PFLogInFieldsPasswordForgotten;
+        loginViewController.fields = PFLogInFieldsDefault;
         
         loginViewController.logInView.logo = [[UIView alloc]init];
         
