@@ -185,6 +185,7 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="nameTextField" destination="QgT-Kv-xfo" id="8aF-qh-hw8"/>
                         <outlet property="radiusLabel" destination="gvQ-Fo-z21" id="7Nj-kY-lmz"/>
                         <outlet property="radiusSlider" destination="3R7-ei-IcH" id="cUK-BE-BQd"/>
                     </connections>

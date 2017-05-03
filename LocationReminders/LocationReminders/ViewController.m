@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AddReminderViewController.h"
 #import "LocationController.h"
+#import "Reminder.h"
 
 @import ParseUI;
 
@@ -60,7 +61,13 @@
 
 -(void)reminderSavedToParse:(id)sender{
     NSLog(@"Do some stuff since our new Reminder was saved!");
-//    [self locationOnePressed:sender];
+    PFQuery *query = [Reminder query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error){
+            Reminder *lastReminder = objects.lastObject;
+            NSLog(@"Reminder saved: %@", lastReminder.name);
+        }
+    }];
 }
 
 -(void)locationControllerUpdatedLocation:(CLLocation *)location{
