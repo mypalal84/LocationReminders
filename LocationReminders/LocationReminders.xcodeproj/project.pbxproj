@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F0BEFF11EBA465E0060462B /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0BEFF01EBA465E0060462B /* Reminder.m */; };
 		7F1DE3261EB7AC05004AC353 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1DE3251EB7AC05004AC353 /* main.m */; };
 		7F1DE3291EB7AC05004AC353 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1DE3281EB7AC05004AC353 /* AppDelegate.m */; };
 		7F1DE32C1EB7AC05004AC353 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1DE32B1EB7AC05004AC353 /* ViewController.m */; };
@@ -37,6 +38,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7F0BEFEF1EBA465E0060462B /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
+		7F0BEFF01EBA465E0060462B /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
 		7F1DE3211EB7AC04004AC353 /* LocationReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F1DE3251EB7AC05004AC353 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7F1DE3271EB7AC05004AC353 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 		7FEDF91A1EB923CD00270F64 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7F0BEFEF1EBA465E0060462B /* Reminder.h */,
+				7F0BEFF01EBA465E0060462B /* Reminder.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FEDF9171EB923B000270F64 /* LocationController.m in Sources */,
+				7F0BEFF11EBA465E0060462B /* Reminder.m in Sources */,
 				7FEDF9141EB8FF1F00270F64 /* AddReminderViewController.m in Sources */,
 				7F1DE32C1EB7AC05004AC353 /* ViewController.m in Sources */,
 				7F1DE3291EB7AC05004AC353 /* AppDelegate.m in Sources */,

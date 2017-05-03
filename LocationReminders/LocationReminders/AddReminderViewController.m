@@ -7,6 +7,7 @@
 //
 
 #import "AddReminderViewController.h"
+#import "Reminder.h"
 
 @interface AddReminderViewController ()
 
@@ -18,10 +19,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    NSLog(@"Annotation Title: %@", self.annotationTitle);
-    NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
+    Reminder *newReminder = [Reminder object];
+    
+    newReminder.name = self.annotationTitle;
+    
+    newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+    
+    [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        
+        NSLog(@"Annotation Title: %@", self.annotationTitle);
+        NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
+        NSLog(@"Save Reminder Successful: %i - Error: %@", succeeded, error.localizedDescription);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,10 +49,11 @@
 }
 */
 
+
 - (IBAction)radiusSliderValueChanged:(id)sender {
     NSNumber *radiusNumber = [NSNumber numberWithInt:self.radiusSlider.value];
     self.radiusLabel.text = [NSString stringWithFormat:@"%@", radiusNumber];
+    
 }
-
 
 @end

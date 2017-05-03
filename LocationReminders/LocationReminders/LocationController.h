@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ViewController.h"
 #import "AddReminderViewController.h"
 
 @protocol LocationControllerDelegate <NSObject>
