@@ -9,6 +9,8 @@
 #import "AddReminderViewController.h"
 #import "Reminder.h"
 
+#import "LocationController.h"
+
 @interface AddReminderViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *radiusLabel;
@@ -56,12 +58,20 @@
 
     
     if (self.completion){
-        CGFloat radius = self.radiusSlider.value; //for lab coming from slider from the user
+        CGFloat radius = self.radiusSlider.value;
         
         MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
         
+        //start monitoring for region
+        if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+            CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:radius identifier:newReminder.name];
+            
+            [LocationController.shared startMonitoringForRegion:region];
+        }
+        
         self.completion(circle);
     }
+//    self.radiusSlider.value = newReminder.radius.intValue;
     
     [self.navigationController popViewControllerAnimated:YES];
 
@@ -73,5 +83,6 @@
     self.radiusLabel.text = [NSString stringWithFormat:@"%@", radiusNumber];
     
 }
+
 
 @end

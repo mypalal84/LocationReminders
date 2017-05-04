@@ -60,12 +60,17 @@
 }
 
 -(void)reminderSavedToParse:(id)sender{
-    NSLog(@"Do some stuff since our new Reminder was saved!");
     PFQuery *query = [Reminder query];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error){
+            for (Reminder *reminder in objects) {
+                NSLog(@"Name: %@, Latitude: %f, Longitude: %f",
+                reminder.name,
+                reminder.location.latitude,
+                reminder.location.longitude);
+            }
             Reminder *lastReminder = objects.lastObject;
-            NSLog(@"Reminder saved: %@", lastReminder.name);
+            NSLog(@"Last reminder saved: %@", lastReminder.name);
         }
     }];
 }

@@ -20,6 +20,7 @@
 
 + (instancetype)shared;
 - (void)updateLocation;
+-(void)startMonitoringForRegion:(CLRegion *)region;
 
 @property(strong, nonatomic)CLLocation *location;
 @property(weak, nonatomic)id<LocationControllerDelegate> delegate;

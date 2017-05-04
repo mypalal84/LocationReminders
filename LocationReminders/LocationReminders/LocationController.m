@@ -56,5 +56,29 @@
 }
 
 
+-(void)startMonitoringForRegion:(CLRegion *)region{
+    [self.locationManager startMonitoringForRegion:region];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
+    NSLog(@"User Has Entered Region: %@", region.identifier);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region{
+    NSLog(@"User Has Exited Region: %@", region.identifier);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"There Was An Error: %@", error.localizedDescription); //ignore if in simulator
+}
+
+-(void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit{
+    NSLog(@"This Is Here For No Reason...But Here's A Visit: %@", visit);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region{
+    NSLog(@"We Have Successfully Started Monitoring Changes For Region: %@", region.identifier);
+}
+
 
 @end
