@@ -7,10 +7,13 @@
 //
 
 #import "AddReminderViewController.h"
+#import "Reminder.h"
 
 @interface AddReminderViewController ()
 
-
+@property (weak, nonatomic) IBOutlet UILabel *radiusLabel;
+@property (weak, nonatomic) IBOutlet UISlider *radiusSlider;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 @end
 
@@ -18,10 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    NSLog(@"Annotation Title: %@", self.annotationTitle);
-    NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,11 +38,40 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)SaveReminderButtonPressed:(id)sender {
+    Reminder *newReminder = [Reminder object];
+    
+    newReminder.name = self.nameTextField.text;
+    
+    newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+    
+    [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        
+        NSLog(@"Annotation Title: %@", self.annotationTitle);
+        NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
+        NSLog(@"Save Reminder Successful: %i - Error: %@", succeeded, error.localizedDescription);
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"ReminderSavedToParse" object:nil];
+    }];
+
+    
+    if (self.completion){
+        CGFloat radius = self.radiusSlider.value; //for lab coming from slider from the user
+        
+        MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
+        
+        self.completion(circle);
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
+
+}
+
 
 - (IBAction)radiusSliderValueChanged:(id)sender {
     NSNumber *radiusNumber = [NSNumber numberWithInt:self.radiusSlider.value];
     self.radiusLabel.text = [NSString stringWithFormat:@"%@", radiusNumber];
+    
 }
-
 
 @end

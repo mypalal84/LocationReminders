@@ -119,7 +119,7 @@
             </objects>
             <point key="canvasLocation" x="1076" y="137.18140929535232"/>
         </scene>
-        <!--Add Reminder View Controller-->
+        <!--Add Reminder-->
         <scene sceneID="aKr-gF-VJp">
             <objects>
                 <viewController id="gBc-Jt-9yo" customClass="AddReminderViewController" sceneMemberID="viewController">
@@ -131,7 +131,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="5" maxValue="2500" minimumValueImage="5" maximumValueImage="2500" translatesAutoresizingMaskIntoConstraints="NO" id="3R7-ei-IcH" userLabel="Region Radius">
+                            <slider opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="1" maxValue="500" translatesAutoresizingMaskIntoConstraints="NO" id="3R7-ei-IcH" userLabel="Region Radius">
                                 <rect key="frame" x="14" y="361" width="347" height="61"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" adjustable="YES"/>
@@ -140,7 +140,7 @@
                                     <constraint firstAttribute="height" constant="60" id="WL6-mz-DPG"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="radiusSliderValueChanged:" destination="gBc-Jt-9yo" eventType="valueChanged" id="qUV-Fe-Og3"/>
+                                    <action selector="radiusSliderValueChanged:" destination="gBc-Jt-9yo" eventType="valueChanged" id="frp-Jw-YZW"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Region Radius (Meters)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvQ-Fo-z21">
@@ -175,9 +175,19 @@
                             <constraint firstItem="QgT-Kv-xfo" firstAttribute="leading" secondItem="Abj-Cx-X7T" secondAttribute="leading" constant="16" id="h43-vN-jRF"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Add Reminder" id="EgG-fu-x6C" userLabel="Add Reminder">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="RQ5-Bq-4b8">
+                            <connections>
+                                <action selector="SaveReminderButtonPressed:" destination="gBc-Jt-9yo" id="UUZ-GZ-ScD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="nameTextField" destination="QgT-Kv-xfo" id="8aF-qh-hw8"/>
                         <outlet property="radiusLabel" destination="gvQ-Fo-z21" id="7Nj-kY-lmz"/>
-                        <outlet property="radiusSlider" destination="3R7-ei-IcH" id="BD1-OS-ikV"/>
+                        <outlet property="radiusSlider" destination="3R7-ei-IcH" id="cUK-BE-BQd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5V1-Za-dBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,8 +213,4 @@
             <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="2500" width="16" height="16"/>
-        <image name="5" width="16" height="16"/>
-    </resources>
 </document>
