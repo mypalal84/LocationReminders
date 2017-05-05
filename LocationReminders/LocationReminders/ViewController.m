@@ -21,9 +21,6 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-
-
-
 @end
 
 @implementation ViewController
@@ -32,6 +29,8 @@
     [super viewDidLoad];
 
     [LocationController shared].delegate = self;
+    
+    [self showAllOverlays];
     
     self.mapView.showsUserLocation = YES;
     
@@ -59,15 +58,21 @@
     }
 }
 
--(void)reminderSavedToParse:(id)sender{
-    NSLog(@"Do some stuff since our new Reminder was saved!");
+-(void)showAllOverlays{
+    [self.mapView removeOverlays:self.mapView.overlays];
+    [self.mapView removeAnnotations:self.mapView.annotations];
     PFQuery *query = [Reminder query];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error){
-            Reminder *lastReminder = objects.lastObject;
-            NSLog(@"Reminder saved: %@", lastReminder.name);
+            for (Reminder *reminder in objects) {
+                [self dropPinForReminder:reminder];
+            }
         }
     }];
+}
+
+-(void)reminderSavedToParse:(id)sender{
+    [self showAllOverlays];
 }
 
 -(void)locationControllerUpdatedLocation:(CLLocation *)location{
@@ -91,16 +96,16 @@
         newReminderViewController.title = annotationView.annotation.title;
         
         //make weak to prevent retain cycle when referencing self in a block
-        __weak typeof (self) bruce = self;
-        
-        newReminderViewController.completion = ^(MKCircle *circle) {
-            
-            //makes hulk self
-            __strong typeof (bruce) hulk = bruce;
-            
-            [hulk.mapView removeAnnotation:annotationView.annotation];
-            [hulk.mapView addOverlay:circle];
-        };
+//        __weak typeof (self) bruce = self;
+//        
+//        newReminderViewController.completion = ^(MKCircle *circle) {
+//            
+//            makes hulk self
+//            __strong typeof (bruce) hulk = bruce;
+//            
+//            [hulk.mapView removeAnnotation:annotationView.annotation];
+//            [hulk.mapView addOverlay:circle];
+//        };
     }
 }
 
@@ -141,7 +146,6 @@
         
         CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint
                                                   toCoordinateFromView:self.mapView];
-        
         MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
         
         newPoint.coordinate = coordinate;
@@ -149,6 +153,17 @@
         
         [self.mapView addAnnotation:newPoint];
     }
+}
+
+-(void)dropPinForReminder:(Reminder *)reminder{
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc]init];
+    
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:[reminder.radius intValue]];
+    annotation.coordinate = coordinate;
+    annotation.title = reminder.name;
+    [self.mapView addAnnotation:annotation];
+    [self.mapView addOverlay:circle];
 }
 
 

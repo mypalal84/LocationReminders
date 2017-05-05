@@ -9,6 +9,8 @@
 #import "AddReminderViewController.h"
 #import "Reminder.h"
 
+#import "LocationController.h"
+
 @interface AddReminderViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *radiusLabel;
@@ -24,20 +26,6 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)SaveReminderButtonPressed:(id)sender {
     Reminder *newReminder = [Reminder object];
     
@@ -45,26 +33,27 @@
     
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
     
+    NSNumber *radius = [NSNumber numberWithFloat:self.radiusSlider.value];
+    
+    newReminder.radius = radius;
+    
     [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         
         NSLog(@"Annotation Title: %@", self.annotationTitle);
         NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
         NSLog(@"Save Reminder Successful: %i - Error: %@", succeeded, error.localizedDescription);
         
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"ReminderSavedToParse" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
     }];
-
     
-    if (self.completion){
-        CGFloat radius = self.radiusSlider.value; //for lab coming from slider from the user
-        
-        MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
-        
-        self.completion(circle);
+        //start monitoring for region
+        if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+            CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:radius.doubleValue identifier:newReminder.name];
+            
+            [LocationController.shared startMonitoringForRegion:region];
+
     }
-    
     [self.navigationController popViewControllerAnimated:YES];
-
 }
 
 
@@ -73,5 +62,6 @@
     self.radiusLabel.text = [NSString stringWithFormat:@"%@", radiusNumber];
     
 }
+
 
 @end
