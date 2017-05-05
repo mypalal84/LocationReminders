@@ -21,9 +21,6 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
-
-
-
 @end
 
 @implementation ViewController
@@ -59,18 +56,42 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self showAllOverlays];
+}
+
+-(void)showAllOverlays{
+    [self.mapView removeOverlays:self.mapView.overlays];
+    
+    PFQuery *query = [Reminder query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error){
+            for (Reminder *reminder in objects) {
+                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
+                MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:[reminder.radius intValue]];
+                [self dropPin:coordinate];
+                [self.mapView addOverlay:circle];
+            }
+        }
+    }];
+}
+
 -(void)reminderSavedToParse:(id)sender{
     PFQuery *query = [Reminder query];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error){
             for (Reminder *reminder in objects) {
-                NSLog(@"Name: %@, Latitude: %f, Longitude: %f",
+                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
+                MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:[reminder.radius intValue]];
+                [self.mapView addOverlay:circle];
+                NSLog(@"Name: %@, Latitude: %f, Longitude: %f, Radius: %@",
                 reminder.name,
                 reminder.location.latitude,
-                reminder.location.longitude);
+                reminder.location.longitude,
+                reminder.radius);
             }
-            Reminder *lastReminder = objects.lastObject;
-            NSLog(@"Last reminder saved: %@", lastReminder.name);
         }
     }];
 }
@@ -146,16 +167,20 @@
         
         CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint
                                                   toCoordinateFromView:self.mapView];
-        
-        MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
-        
-        newPoint.coordinate = coordinate;
-        newPoint.title = @"New Location";
-        
-        [self.mapView addAnnotation:newPoint];
+        [self dropPin:coordinate];
+    
     }
 }
 
+- (void)dropPin:(CLLocationCoordinate2D)coordinate{
+    
+    MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+    
+    newPoint.coordinate = coordinate;
+    newPoint.title = @"New Location";
+    
+    [self.mapView addAnnotation:newPoint];
+}
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     

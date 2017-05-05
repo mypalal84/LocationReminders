@@ -47,6 +47,10 @@
     
     newReminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
     
+    NSNumber *radius = [NSNumber numberWithFloat:self.radiusSlider.value];
+    
+    newReminder.radius = radius;
+    
     [newReminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         
         NSLog(@"Annotation Title: %@", self.annotationTitle);
@@ -71,10 +75,7 @@
         
         self.completion(circle);
     }
-//    self.radiusSlider.value = newReminder.radius.intValue;
-    
     [self.navigationController popViewControllerAnimated:YES];
-
 }
 
 
