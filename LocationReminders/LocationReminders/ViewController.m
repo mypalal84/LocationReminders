@@ -30,6 +30,8 @@
 
     [LocationController shared].delegate = self;
     
+    [self showAllOverlays];
+    
     self.mapView.showsUserLocation = YES;
     
     self.mapView.delegate = self;
@@ -56,44 +58,21 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    [self showAllOverlays];
-}
-
 -(void)showAllOverlays{
     [self.mapView removeOverlays:self.mapView.overlays];
-    
+    [self.mapView removeAnnotations:self.mapView.annotations];
     PFQuery *query = [Reminder query];
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error){
             for (Reminder *reminder in objects) {
-                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
-                MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:[reminder.radius intValue]];
-                [self dropPin:coordinate];
-                [self.mapView addOverlay:circle];
+                [self dropPinForReminder:reminder];
             }
         }
     }];
 }
 
 -(void)reminderSavedToParse:(id)sender{
-    PFQuery *query = [Reminder query];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (!error){
-            for (Reminder *reminder in objects) {
-                CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
-                MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:[reminder.radius intValue]];
-                [self.mapView addOverlay:circle];
-                NSLog(@"Name: %@, Latitude: %f, Longitude: %f, Radius: %@",
-                reminder.name,
-                reminder.location.latitude,
-                reminder.location.longitude,
-                reminder.radius);
-            }
-        }
-    }];
+    [self showAllOverlays];
 }
 
 -(void)locationControllerUpdatedLocation:(CLLocation *)location{
@@ -117,16 +96,16 @@
         newReminderViewController.title = annotationView.annotation.title;
         
         //make weak to prevent retain cycle when referencing self in a block
-        __weak typeof (self) bruce = self;
-        
-        newReminderViewController.completion = ^(MKCircle *circle) {
-            
-            //makes hulk self
-            __strong typeof (bruce) hulk = bruce;
-            
-            [hulk.mapView removeAnnotation:annotationView.annotation];
-            [hulk.mapView addOverlay:circle];
-        };
+//        __weak typeof (self) bruce = self;
+//        
+//        newReminderViewController.completion = ^(MKCircle *circle) {
+//            
+//            makes hulk self
+//            __strong typeof (bruce) hulk = bruce;
+//            
+//            [hulk.mapView removeAnnotation:annotationView.annotation];
+//            [hulk.mapView addOverlay:circle];
+//        };
     }
 }
 
@@ -167,20 +146,26 @@
         
         CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint
                                                   toCoordinateFromView:self.mapView];
-        [self dropPin:coordinate];
-    
+        MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+        
+        newPoint.coordinate = coordinate;
+        newPoint.title = @"New Location";
+        
+        [self.mapView addAnnotation:newPoint];
     }
 }
 
-- (void)dropPin:(CLLocationCoordinate2D)coordinate{
+-(void)dropPinForReminder:(Reminder *)reminder{
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc]init];
     
-    MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
-    
-    newPoint.coordinate = coordinate;
-    newPoint.title = @"New Location";
-    
-    [self.mapView addAnnotation:newPoint];
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(reminder.location.latitude, reminder.location.longitude);
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:[reminder.radius intValue]];
+    annotation.coordinate = coordinate;
+    annotation.title = reminder.name;
+    [self.mapView addAnnotation:annotation];
+    [self.mapView addOverlay:circle];
 }
+
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     

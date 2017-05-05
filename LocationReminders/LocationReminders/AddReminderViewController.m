@@ -26,20 +26,6 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)SaveReminderButtonPressed:(id)sender {
     Reminder *newReminder = [Reminder object];
     
@@ -57,23 +43,15 @@
         NSLog(@"Coordinates: %f, %f", self.coordinate.latitude, self.coordinate.longitude);
         NSLog(@"Save Reminder Successful: %i - Error: %@", succeeded, error.localizedDescription);
         
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"ReminderSavedToParse" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReminderSavedToParse" object:nil];
     }];
-
     
-    if (self.completion){
-        CGFloat radius = self.radiusSlider.value;
-        
-        MKCircle *circle = [MKCircle circleWithCenterCoordinate:self.coordinate radius:radius];
-        
         //start monitoring for region
         if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
-            CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:radius identifier:newReminder.name];
+            CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:self.coordinate radius:radius.doubleValue identifier:newReminder.name];
             
             [LocationController.shared startMonitoringForRegion:region];
-        }
-        
-        self.completion(circle);
+
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
